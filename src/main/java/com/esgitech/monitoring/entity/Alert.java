@@ -15,13 +15,18 @@ public class Alert {
     private String status;
     private LocalDateTime date;
 
+    @ManyToOne
+    @JoinColumn(name = "anomaly_id")
+    private Anomaly anomaly;
+
     public Alert() {
     }
 
-    public Alert(String message, String status, LocalDateTime date) {
+    public Alert(String message, String status, LocalDateTime date, Anomaly anomaly) {
         this.message = message;
         this.status = status;
         this.date = date;
+        this.anomaly = anomaly;
     }
 
     public Long getId() {
@@ -50,5 +55,13 @@ public class Alert {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public Anomaly getAnomaly() {
+        return anomaly;
+    }
+
+    public void setAnomaly(Anomaly anomaly) {
+        this.anomaly = anomaly;
     }
 }
